@@ -366,7 +366,7 @@ def main(args):
     for key, value in text_examples.items():
         prediction = classify_text(
             value, model, tokenizer, device, max_length=training_max_length)
-        isCorrect = reverse_mapping[prediction] == mapping[key]
+        isCorrect = reverse_mapping[prediction] == key
         correct_answers += int(isCorrect)
         print(
             f"{isCorrect} | {key} | {reverse_mapping[prediction]} ({prediction}): {value}")
