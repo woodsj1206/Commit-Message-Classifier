@@ -342,8 +342,12 @@ def main(args):
     print(f"Validation accuracy: {validation_accuracy*100:.2f}%")
     print(f"Test accuracy: {test_accuracy*100:.2f}%")
 
-    # Example classifications
+    ################################################
+    # Example usage
+    ################################################
+
     print("\nClassifying example commit messages...")
+    # Example classifications
     text_examples = {
         "build": "add webpack configuration for production bundle",
         "ci/cd": "add GitHub Actions workflow for automated testing",
