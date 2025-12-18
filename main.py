@@ -308,6 +308,10 @@ def main(args):
     end_time = time.time()
     print(f"End Time: {time.ctime(end_time)}")
 
+    # Display training time statistics
+    print("\nTraining completed.")
+    print(f"Start Time: {time.ctime(start_time)}")
+    print(f"End Time: {time.ctime(end_time)}")
     print(f"Total Training Time: {end_time - start_time:.2f} seconds")
 
     ################################################
