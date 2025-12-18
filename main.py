@@ -158,7 +158,7 @@ def main(args):
 
     labels = csv_data[label].unique().tolist()
 
-    mapping = {labels: i for i, labels in enumerate(labels)}
+    mapping = {str(labels): i for i, labels in enumerate(labels)}
     reverse_mapping = {value: key for key, value in mapping.items()}
 
     print(f"Number of classes: {len(mapping)}")

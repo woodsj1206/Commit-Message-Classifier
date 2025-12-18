@@ -1,6 +1,6 @@
 # Original Author: Sebastian Raschka (https://github.com/rasbt/LLMs-from-scratch)
 # Modified By: woodsj1206 (https://github.com/woodsj1206)
-# Last Modified: 12/16/2025
+# Last Modified: 12/18/2025
 import os
 import torch
 from datetime import datetime
@@ -147,4 +147,4 @@ def classify_text(text, model, tokenizer, device, max_length=None, pad_token_id=
         logits = model(inputs_ids)[:, -1, :]
     predicted_label = torch.argmax(logits, dim=-1).item()
 
-    return predicted_label
+    return int(predicted_label)
