@@ -184,9 +184,9 @@ def main(args):
     val_csv = os.path.join(data_dir, "validation.csv")
     test_csv = os.path.join(data_dir, "test.csv")
 
-    train_data.to_csv(train_csv, index=None)
-    validation_data.to_csv(val_csv, index=None)
-    test_data.to_csv(test_csv, index=None)
+    train_data.to_csv(path_or_buf=train_csv, index=None)
+    validation_data.to_csv(path_or_buf=val_csv, index=None)
+    test_data.to_csv(path_or_buf=test_csv, index=None)
 
     tokenizer = tiktoken.get_encoding("gpt2")
     train_dataset = CSVDataset(csv_file_path=train_csv, csv_text=text,
