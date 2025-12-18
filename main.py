@@ -1,6 +1,6 @@
 # Original Author: Sebastian Raschka (https://github.com/rasbt/LLMs-from-scratch)
 # Modified By: woodsj1206 (https://github.com/woodsj1206)
-# Last Modified: 12/16/2025
+# Last Modified: 12/18/2025
 from dataset import CSVDataset
 from gpt import GPT_CONFIG, MODEL_CONFIGS, GPTModel
 from results import plot_data
