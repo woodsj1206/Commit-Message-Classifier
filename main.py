@@ -371,6 +371,7 @@ def main(args):
         print(
             f"{isCorrect} | {key} | {reverse_mapping[prediction]} ({prediction}): {value}")
 
+    print(f"Correct Answers: {correct_answers} / {len(text_examples)}")
     print(
         f"Accuracy (Text Examples): {correct_answers / len(text_examples)*100:.2f}%")
 
