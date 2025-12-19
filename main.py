@@ -112,6 +112,14 @@ def parse_arguments():
         help="Frequency (in steps) for saving model checkpoints. Default is 10000.",
     )
 
+    # Test options
+    parser.add_argument(
+        "--run_tests",
+        type=bool,
+        default=False,
+        help="Whether to run example classifications after training. Default is False.",
+    )
+
     args = parser.parse_args()
     return args
 
@@ -350,34 +358,39 @@ def main(args):
     # Example usage
     ################################################
 
-    print("\nClassifying example commit messages...")
-    # Example classifications
-    text_examples = {
-        "build": "add webpack configuration for production bundle",
-        "ci/cd": "add GitHub Actions workflow for automated testing",
-        "docs": "update contribution guidelines with new code of conduct",
-        "feat": "add user registration with email verification",
-        "fix": "correct total calculation for discounted items",
-        "perf": "implement lazy loading for gallery view",
-        "refactor": "simplify state management in user reducer",
-        "style": "fix indentation and trailing spaces",
-        "test": "cover edge cases in login flow",
-        "chore": "update dependencies to latest minor versions",
-        "revert": "undo recent changes to authentication module",
-    }
+    run_tests = args.run_tests
+    if run_tests:
+        print("\nClassifying example commit messages...")
 
-    correct_answers = 0
-    for key, value in text_examples.items():
-        prediction = classify_text(
-            value, model, tokenizer, device, max_length=training_max_length)
-        isCorrect = reverse_mapping[prediction] == key
-        correct_answers += int(isCorrect)
+        # Example classifications
+        text_examples = {
+            "build": "add webpack configuration for production bundle",
+            "ci/cd": "add GitHub Actions workflow for automated testing",
+            "docs": "update contribution guidelines with new code of conduct",
+            "feat": "add user registration with email verification",
+            "fix": "correct total calculation for discounted items",
+            "perf": "implement lazy loading for gallery view",
+            "refactor": "simplify state management in user reducer",
+            "style": "fix indentation and trailing spaces",
+            "test": "cover edge cases in login flow",
+            "chore": "update dependencies to latest minor versions",
+            "revert": "undo recent changes to authentication module",
+        }
+
+        correct_answers = 0
+        for key, value in text_examples.items():
+            prediction = classify_text(
+                value, model, tokenizer, device, max_length=training_max_length)
+
+            isCorrect = reverse_mapping[prediction] == key
+            correct_answers += int(isCorrect)
+
+            print(
+                f"{isCorrect} | {key} | {reverse_mapping[prediction]} ({prediction}): {value}")
+
+        print(f"Correct Answers: {correct_answers} / {len(text_examples)}")
         print(
-            f"{isCorrect} | {key} | {reverse_mapping[prediction]} ({prediction}): {value}")
-
-    print(f"Correct Answers: {correct_answers} / {len(text_examples)}")
-    print(
-        f"Accuracy (Text Examples): {correct_answers / len(text_examples)*100:.2f}%")
+            f"Accuracy (Text Examples): {correct_answers / len(text_examples)*100:.2f}%")
 
 
 if __name__ == "__main__":
