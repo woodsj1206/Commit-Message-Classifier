@@ -22,7 +22,7 @@ def parse_arguments():
         "--csv_file_path",
         type=str,
         required=True,
-        help="Required. Path to the CSV file containing text and labels. Expected format: text,label. Default is 'csv_data.csv'.",
+        help="Required. Path to the CSV file containing text and labels. Expected format: text,label",
     )
     parser.add_argument(
         "--seed",
