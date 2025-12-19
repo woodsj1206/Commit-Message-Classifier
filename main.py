@@ -291,6 +291,7 @@ def main(args):
     ################################################
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"\nUsing device: {device}")
     model.to(device)
 
     lr = args.lr
