@@ -1,6 +1,6 @@
 # Original Author: Sebastian Raschka (https://github.com/rasbt/LLMs-from-scratch)
 # Modified By: woodsj1206 (https://github.com/woodsj1206)
-# Last Modified: 12/18/2025
+# Last Modified: 12/21/2025
 import os
 import torch
 from datetime import datetime
@@ -59,7 +59,7 @@ def calculate_loss_loader(data_loader, model, device, num_batches=None):
     return total_loss / num_batches
 
 
-def train_model(model, train_loader, val_loader, optimizer, device, reverse_mapping, num_epochs, eval_freq, eval_iter, dir_path, checkpoint_frequency=10000):
+def train_model(model, train_loader, val_loader, optimizer, device, reverse_mapping, training_max_length, num_epochs, eval_freq, eval_iter, dir_path, checkpoint_frequency=10000):
     train_losses = []
     val_losses = []
 
@@ -95,7 +95,8 @@ def train_model(model, train_loader, val_loader, optimizer, device, reverse_mapp
                 torch.save({
                     "model_state_dict": model.state_dict(),
                     "optimizer_state_dict": optimizer.state_dict(),
-                    "reverse_mapping_dict": reverse_mapping
+                    "reverse_mapping_dict": reverse_mapping,
+                    "training_max_length": training_max_length
                 }, checkpoint_path)
                 print(f"Saved: {checkpoint_path}")
 
@@ -117,7 +118,8 @@ def train_model(model, train_loader, val_loader, optimizer, device, reverse_mapp
     torch.save({
         "model_state_dict": model.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
-        "reverse_mapping_dict": reverse_mapping
+        "reverse_mapping_dict": reverse_mapping,
+        "training_max_length": training_max_length
     }, final_checkpoint_path)
 
     return train_losses, val_losses, train_accuracies, val_accuracies, examples_seen

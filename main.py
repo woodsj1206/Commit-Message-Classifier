@@ -1,6 +1,6 @@
 # Original Author: Sebastian Raschka (https://github.com/rasbt/LLMs-from-scratch)
 # Modified By: woodsj1206 (https://github.com/woodsj1206)
-# Last Modified: 12/18/2025
+# Last Modified: 12/21/2025
 from dataset import CSVDataset
 from gpt import GPT_CONFIG, MODEL_CONFIGS, GPTModel
 from results import plot_data
@@ -312,7 +312,7 @@ def main(args):
         return
 
     train_losses, val_losses, train_accs, val_accs, examples_seen = train_model(
-        model, train_loader, validation_loader, optimizer, device, reverse_mapping, num_epochs, eval_freq, eval_iter, model_dir, checkpoint_frequency)
+        model, train_loader, validation_loader, optimizer, device, reverse_mapping, training_max_length, num_epochs, eval_freq, eval_iter, model_dir, checkpoint_frequency)
 
     end_time = time.time()
     print(f"End Time: {time.ctime(end_time)}")
