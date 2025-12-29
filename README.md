@@ -133,7 +133,7 @@ The following shows the main file structure of the project with brief descriptio
 ├── main.py                    # Run the project
 ├── train.py                   # Training code
 ├── gpt.py                     # GPT model
-├── dataset.py                 # Data loaders
+├── dataset.py                 # CSV Dataset class
 ├── utils.py                   # Helper functions
 ├── results.py                 # Save results
 └── requirements.txt           # Required Python packages
